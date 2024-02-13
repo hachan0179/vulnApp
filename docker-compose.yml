@@ -1,0 +1,29 @@
+version: '3'
+services:
+  nginx-proxy:
+    build: 
+      context: ./nginx-proxy
+      dockerfile: ./dockerfile
+    image: nginx-proxy
+    container_name: nginx-proxy-container
+    ports:
+      - "8080:80"
+      - "4000:4000"
+  bottle-app:
+    build: 
+      context: ./bottle-app
+      dockerfile: ./dockerfile
+    image: bottle-app
+    container_name: bottle-app-container
+  mysql-db:
+    build: ./mysql-db
+    image: mysql
+    container_name: mysql-db-container
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+  c-api:
+    build: 
+      context: ./c-api
+      dockerfile: ./dockerfile
+    image: c-api
+    container_name: c-api-container

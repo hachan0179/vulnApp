@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   nginx-proxy:
     build: 
       context: ./nginx-proxy
@@ -7,23 +8,55 @@ services:
     image: nginx-proxy
     container_name: nginx-proxy-container
     ports:
-      - "8080:80"
+      - "8080:8080"
       - "4000:4000"
-  bottle-app:
+      - "4001:4001"
+    restart: always
+    depends_on:
+      - welcome-api
+      - bof-api
+      - bin-upload
+
+
+  welcome-api:
     build: 
-      context: ./bottle-app
+      context: ./welcome-api
       dockerfile: ./dockerfile
-    image: bottle-app
-    container_name: bottle-app-container
-  mysql-db:
-    build: ./mysql-db
-    image: mysql
-    container_name: mysql-db-container
-    environment:
-      MYSQL_ROOT_PASSWORD: mysql
-  c-api:
+    container_name: welcome-api-container
+    restart: always
+
+  bof-api:
     build: 
-      context: ./c-api
+      context: ./bof-api
       dockerfile: ./dockerfile
-    image: c-api
-    container_name: c-api-container
+    container_name: bof-api
+    depends_on:
+      - bin-upload
+    restart: always
+
+  bin-upload:
+    build:
+      context: ./bin-upload
+      dockerfile: ./dockerfile
+    container_name: bin-upload-container
+    restart: always
+
+
+  # bottle-app:
+  #   build: 
+  #     context: ./bottle-app
+  #     dockerfile: ./dockerfile
+  #   image: bottle-app
+  #   container_name: bottle-app-container
+  # mysql-db:
+  #   build: ./mysql-db
+  #   image: mysql
+  #   container_name: mysql-db-container
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: mysql
+  # c-api:
+  #   build: 
+  #     context: ./c-api
+  #     dockerfile: ./dockerfile
+  #   image: c-api
+  #   container_name: c-api-container

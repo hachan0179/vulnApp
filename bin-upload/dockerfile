@@ -1,0 +1,5 @@
+FROM common-bottle
+COPY ./files/ /opt/app/
+WORKDIR /opt/app/
+CMD     mkdir chall && \
+        python3 app.py

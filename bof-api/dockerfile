@@ -1,6 +1,7 @@
 FROM common-capi
 COPY ./files/ /opt/
 WORKDIR /opt
-CMD     gcc bof.c -fno-stack-protector -no-pie -o chall_bof.elf && \
+CMD     gcc bof.c -fno-stack-protector -no-pie -o chall.elf && \
+        gcc s_bof.c -fno-stack-protector -no-pie -o chall_bof.elf && \
         curl -X POST -F upload=@./chall_bof.elf http://bin-upload:8080/upload && \
-        socat TCP-L:4000,reuseaddr,fork EXEC:./chall_bof.elf
+        socat TCP-L:4000,reuseaddr,fork EXEC:./chall.elf

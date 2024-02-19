@@ -1,5 +1,8 @@
 FROM common-capi
-COPY ./files/ /opt/
-WORKDIR /opt
-CMD     gcc welcome.c -o welcome.elf && \
-        socat TCP-L:4000,reuseaddr,fork EXEC:./welcome.elf
+COPY ./files/ /opt/app/
+ENV src=welcome.c
+ENV out=welcome.elf
+WORKDIR /opt/app
+USER bob
+CMD     gcc ${src} -o ${out} && \
+        socat TCP-L:4000,reuseaddr,fork EXEC:./${out}

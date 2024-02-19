@@ -11,6 +11,7 @@ services:
       - "8080:8080"
       - "4000:4000"
       - "4001:4001"
+      - "4002:4002"
     restart: always
     depends_on:
       - welcome-api
@@ -41,6 +42,14 @@ services:
     container_name: bin-upload-container
     restart: always
 
+  rop1-api:
+    build: 
+      context: ./rop1-api
+      dockerfile: ./dockerfile
+    container_name: rop1-api-container
+    depends_on:
+      - bin-upload
+    restart: always
 
   # bottle-app:
   #   build: 

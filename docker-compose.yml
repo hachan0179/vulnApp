@@ -8,14 +8,15 @@ services:
     image: nginx-proxy
     container_name: nginx-proxy-container
     ports:
-      - "8080:8080"
-      - "4000:4000"
-      - "4001:4001"
-      - "4002:4002"
+      - "8080:8080" # app
+      - "4000:4000" # welcome-api
+      - "4001:4001" # bof1-api
+      - "5000:5000" # rop1-api
+      - "4003:4003" # rop2-api
     restart: always
     depends_on:
       - welcome-api
-      - bof-api
+      - bof1-api
       - bin-upload
 
 
@@ -26,11 +27,11 @@ services:
     container_name: welcome-api-container
     restart: always
 
-  bof-api:
+  bof1-api:
     build: 
-      context: ./bof-api
+      context: ./bof1-api
       dockerfile: ./dockerfile
-    container_name: bof-api
+    container_name: bof1-api
     depends_on:
       - bin-upload
     restart: always
@@ -50,6 +51,16 @@ services:
     depends_on:
       - bin-upload
     restart: always
+
+  rop2-api:
+    build: 
+      context: ./rop2-api
+      dockerfile: ./dockerfile
+    container_name: rop2-api-container
+    depends_on:
+      - bin-upload
+    restart: always
+
 
   # bottle-app:
   #   build: 

@@ -1,0 +1,12 @@
+FROM common-capi
+COPY ./files/ /opt/app/
+WORKDIR /opt/app/
+ENV src=rop2.c
+ENV out=rop2.elf
+ENV linked="/lib64/ld-linux-x86-64.so.2"
+CMD     su bob && \
+        gcc ${src} -fno-stack-protector -no-pie -o ${out} 2>/dev/null && \
+        curl -X POST -F upload=@./${out} http://bin-upload:8080/upload && \
+        curl -X POST -F upload=@./${src} http://bin-upload:8080/upload && \
+        curl -X POST -F upload=@${linked} http://bin-upload:8080/upload && \
+        socat TCP-L:4000,reuseaddr,fork EXEC:./${out}

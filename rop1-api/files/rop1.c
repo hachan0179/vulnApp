@@ -12,7 +12,7 @@ int main()
 {
     setbuf(stdout,NULL);
     char buf[0x20];
-    printf("What is your favorite comic ? : ");
+    printf("Can you hack my flag? : ");
     gets(buf);
     printf("Enjoy %s\n",buf);
     return 0;

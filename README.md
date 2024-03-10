@@ -25,23 +25,23 @@ nc localhost 4000
 ```
 nc localhost 4001
 ```
-<http://chall.localhost:8080/chall/bof1.elf>
+<http://chall.localhost:8080/get/bof1.elf>
 
 ### rop1 
 引数を指定するROP
 ```
 nc localhost 5000
 ```
-<http://chall.localhost:8080/chall/hidden_rop1.c><br>
-<http://chall.localhost:8080/chall/rop1.elf>
+<http://chall.localhost:8080/get/hidden_rop1.c><br>
+<http://chall.localhost:8080/get/rop1.elf>
 
 ### rop2
 動的リンクされるところからガジェットを集めてシェルの奪取
 ```
 nc localhost 5001
 ```
-<http://chall.localhost:8080/chall/rop2.c><br>
-<http://chall.localhost:8080/chall/rop2.elf><br>
-<http://chall.localhost:8080/chall/ld-linux-x86-64.so.2>
+<http://chall.localhost:8080/get/rop2.c><br>
+<http://chall.localhost:8080/get/rop2.elf><br>
+<http://chall.localhost:8080/get/ld-linux-x86-64.so.2>
 
 

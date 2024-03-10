@@ -36,7 +36,7 @@ nc localhost 5000
 <http://chall.localhost:8080/get/rop1.elf>
 
 ### rop2
-動的リンクされるところからガジェットを集めてシェルの奪取
+ライブラリからガジェットを集めてシェルの奪取
 ```
 nc localhost 5001
 ```

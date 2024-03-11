@@ -1,4 +1,4 @@
-# 脆弱性を試すためのコンテナ環境づくり
+# 脆弱性を試すための遊び場
 
 随時更新中
 
@@ -42,6 +42,6 @@ nc localhost 5001
 ```
 <http://chall.localhost:8080/get/rop2.c><br>
 <http://chall.localhost:8080/get/rop2.elf><br>
-<http://chall.localhost:8080/get/ld-linux-x86-64.so.2>
+<http://chall.localhost:8080/get/libc.so.6>
 
 

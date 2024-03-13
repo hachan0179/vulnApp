@@ -32,7 +32,7 @@ nc localhost 4001
 ```
 nc localhost 5000
 ```
-<http://chall.localhost:8080/get/hidden_rop1.c><br>
+<http://chall.localhost:8080/get/rop1.c><br>
 <http://chall.localhost:8080/get/rop1.elf>
 
 ### rop2

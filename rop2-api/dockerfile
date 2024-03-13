@@ -4,8 +4,8 @@ WORKDIR /opt/app/
 ENV src=rop2.c
 ENV out=rop2.elf
 ENV linked="/usr/lib/x86_64-linux-gnu/libc.so.6"
-CMD     su bob && \
-        gcc ${src} -fno-stack-protector -no-pie -o ${out} 2>/dev/null && \
+USER bob
+CMD     gcc ${src} -fno-stack-protector -no-pie -o ${out} 2>/dev/null && \
         curl -X POST -F upload=@./${out} http://bin-upload:8080/upload && \
         curl -X POST -F upload=@./${src} http://bin-upload:8080/upload && \
         curl -X POST -F upload=@${linked} http://bin-upload:8080/upload && \

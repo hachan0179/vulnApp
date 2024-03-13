@@ -1,9 +1,9 @@
 FROM common-capi
 COPY ./files/ /opt/app/
 WORKDIR /opt/app/
-ENV src=bof1.c
+ENV src=_bof1.c
 ENV out=chall.elf
-ENV hidden_src=hidden_bof1.c
+ENV hidden_src=bof1.c
 ENV hidden_out=bof1.elf
 USER bob
 CMD     gcc ${src} -fno-stack-protector -no-pie -o ${out} 2>/dev/null && \

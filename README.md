@@ -27,6 +27,14 @@ nc localhost 4001
 ```
 <http://chall.localhost:8080/get/bof1.elf>
 
+### bof2
+canaryを漏洩させてからリターンアドレスを書き換える
+```
+nc localhost 4002
+```
+<http://chall.localhost:8080/get/bof2.c>
+<http://chall.localhost:8080/get/bof2.elf>
+
 ### rop1 
 引数を指定するROP
 ```

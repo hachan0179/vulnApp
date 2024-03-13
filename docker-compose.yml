@@ -11,13 +11,15 @@ services:
       - "8080:8080" # bin-app
       - "4000:4000" # welcome-api
       - "4001:4001" # bof1-api
+      - "4002:4002" # bof2-api
       - "5000:5000" # rop1-api
       - "5001:5001" # rop2-api
     restart: always
     depends_on:
+      - bin-upload
       - welcome-api
       - bof1-api
-      - bin-upload
+      - bof2-api
       - rop1-api
       - rop2-api
 
@@ -33,6 +35,15 @@ services:
       context: ./bof1-api
       dockerfile: ./dockerfile
     container_name: bof1-api
+    depends_on:
+      - bin-upload
+    restart: always
+
+  bof2-api:
+    build: 
+      context: ./bof2-api
+      dockerfile: ./dockerfile
+    container_name: bof2-api
     depends_on:
       - bin-upload
     restart: always

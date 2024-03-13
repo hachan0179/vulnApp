@@ -1,0 +1,13 @@
+FROM common-capi
+COPY ./files/ /opt/app/
+WORKDIR /opt/app/
+ENV src=_bof2.c
+ENV out=chall.elf
+ENV hidden_src=bof2.c
+ENV hidden_out=bof2.elf
+USER bob
+CMD     gcc ${src} -no-pie -o ${out} 2>/dev/null && \
+        gcc ${hidden_src} -no-pie -o ${hidden_out} 2>/dev/null && \
+        curl -X POST -F upload=@./${hidden_out} http://bin-upload:8080/upload && \
+        curl -X POST -F upload=@./${hidden_src} http://bin-upload:8080/upload && \
+        socat TCP-L:4000,reuseaddr,fork EXEC:./${out}

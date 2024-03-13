@@ -4,6 +4,11 @@
 #include <unistd.h>
 #include <err.h>
 
+void gadget() {
+    asm("pop %rdi; ret");
+    asm("pop %rdx; ret");
+}
+
 int main()
 {
     setbuf(stdout,NULL);

@@ -6,11 +6,11 @@
 ## コンテナイメージのビルド
 必要なコンテナイメージとdocker-composeをビルドをします。
 ```
-    $ source ./build.sh
+source ./build.sh
 ```
 ## コンテナの起動
 ```
-    $ docker-compose up
+docker-compose up
 ```
 
 # コンテナ
